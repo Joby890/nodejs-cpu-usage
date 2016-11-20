@@ -17,7 +17,7 @@ function cpuUsage( freq, cb ) {
 	var prevIdle = 0;
 	var prevLoad = 0;
 
-	setInterval( function( ) {
+	var id = setInterval( function( ) {
 		readStat( function( data ) {
 			var dRaw = data.split( ' ' );
 			
@@ -49,6 +49,7 @@ function cpuUsage( freq, cb ) {
 			prevIdle = idle;
 		} );
 	}, freq || 1000 );
+	return id;
 };
 
 module.exports = cpuUsage;
